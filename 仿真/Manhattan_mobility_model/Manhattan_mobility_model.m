@@ -1,9 +1,5 @@
-function user=Manhattan_mobility_model(Path,pois)
+function user=Manhattan_mobility_model(user,point)
 t_run=0;
-PathSize=size(Path);
-for s=1:PathSize
-    des=Path(s);
-    point=pois(des,:);
     while (point(1)~=user(1)&&t_run<1)%ºáÏò×ß
         user(1)=user(1)+1*(point(1)-user(1))/abs(point(1)-user(1));%Íù×óÍùÓÒ×ß
         user(2)=user(2);
@@ -14,5 +10,4 @@ for s=1:PathSize
         user(1)=user(1);
         t_run=t_run+1;
     end
-end
 end

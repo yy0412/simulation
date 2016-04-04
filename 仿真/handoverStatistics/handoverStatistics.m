@@ -20,20 +20,29 @@ numberofHeNB=5;
 %用户撒点
 numberOfUsers=30;%应该是60个
 users=userMake(numberOfUsers);
-while (record_time<100)
-    for u=1:numberOfUsers
-       %选择服务基站
-       [theServiceBaseStation,class]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
-        %曼哈顿移动模型
+for u=1:numberOfUsers
+    %选择服务基站
+    [theServiceBaseStation,class]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
+    while (record_time<100)
         Path=howtoMove(users(u,:),users,pois,gates,restaurants,shops,offices,flats);
-        users(u,:)=Manhattan_mobility_model(Path,pois);
-        %重新选择服务基站
-        [theServiceBaseStationNew,classNew]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
-        if theServiceBaseStationNew~=theServiceBaseStation&&strcmp(class,classNew)%发生切换
-            count_handover_number(theServiceBaseStation,theServiceBaseStationNew)=count_handover_number(theServiceBaseStation,theServiceBaseStationNew)+1;
+        PathSize=size(Path);
+        %曼哈顿移动模型
+        while PathSize>0
+            des=Path(1);
+            point=pois(des,:);
+            while users(u,:)~=point
+                users(u,:)=Manhattan_mobility_model(users(u,:),point);
+                %重新选择服务基站
+                [theServiceBaseStationNew,classNew]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
+                if theServiceBaseStationNew~=theServiceBaseStation&&strcmp(class,classNew)%发生切换
+                    theServiceBaseStation=theServiceBaseStationNew;
+                    count_handover_number(theServiceBaseStation,theServiceBaseStationNew)=count_handover_number(theServiceBaseStation,theServiceBaseStationNew)+1;
+                end
+                record_time=record_time+1;
+            end
+            Path(1)=[];
+            PathSize=PathSize-1;
         end
     end
-    record_time=record_time+1;
-end
-%最后就是要一个count_handover_number的矩阵
+    %最后就是要一个count_handover_number的矩阵
 end

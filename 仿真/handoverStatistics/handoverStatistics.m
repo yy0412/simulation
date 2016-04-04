@@ -1,6 +1,5 @@
 function count_handover_number=handoverStatistics()
 %initial the parameters of network
-%nnnnnnn
 clear
 clc
 % h_eNB=32;

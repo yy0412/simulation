@@ -2,7 +2,7 @@ function Path=howtoMove(user,users,UG,pois,poisofRoamingResidents,gates,restaura
 n=1;%dis_rand参数
 PositioninUsers=findPositioninPOIs(user,users);
 %worker
-if 1<=PositioninUsers&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口-出口和入口一样
+if PositioninUsers>=1&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口-出口和入口一样
     Enter=user;
     %-------------1.分配工作地址-----------------
     x_work=[restaurants;shops;offices];
@@ -57,7 +57,7 @@ elseif   43<=PositioninUsers&&PositioninUsers<=54%visitors
     p=1/14*ones(1,14);
     gatetoLeave=dis_rand(x,p,n);
     %-------------1.选择去哪儿游玩-----------------
-    x_work=[restaurants;shops;offices,flats,gatetoLeave];
+    x_work=[restaurants;shops;offices;flats;gatetoLeave];
     p_work=[0.125;0.125;0.125;0.125;0.025;0.025;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.5];
     placetoVisit=dis_rand(x_work,p_work,n);
     %-----------2.计算最短路程--------------

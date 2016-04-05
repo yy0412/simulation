@@ -1,7 +1,7 @@
 function users=userMake(numberOfUsers)
 %间距还需调整
 xStreet=[0,250,400,450,500];%把路从单根线改成了双根线，x,y分别添上增加16的（16，266，416等）
-yStreet=[0,200,300,400];
+yStreet=[0,150,225,300];
 users=[;];
 for i=1:numberOfUsers/2
 %选取纵向街道

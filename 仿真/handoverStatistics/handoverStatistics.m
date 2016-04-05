@@ -1,24 +1,20 @@
-function count_handover_number=handoverStatistics()
 %initial the parameters of network
 clear
 clc
-% h_eNB=32;
 % h_HeNB = 1+3*(Floor - 1);
-% h_MS=1.5;
-% speed=1;%1m/s
 % handover_clock=0;
 %Tc=1;                      %time of measure interval 0.5
 record_time=0;                %record the number of interval time of system
 %countinue_run=true;
 %部署微微基站和家庭基站
-numberofHeNB=5;
+numberofHeNB=30;
 count_handover_number=zeros(numberofHeNB);
 %numberofHeNB=30:30:120;%numberofeNB=4;
 [eNBs,HeNBs]=baseStationArrange(numberofHeNB);
 [pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats]=PIOArrange();
 %BaseStations=[eNBs;HeNBs];
 %用户撒点
-numberOfUsers=30;%应该是60个
+numberOfUsers=60;%应该是60个
 users=userMake(numberOfUsers);
 for u=1:numberOfUsers
     [UG,pois]=calculateWeight(users(u,:),pois);

@@ -15,7 +15,7 @@ for j=1:size(RSSofHeNBs)
         theServiceBaseStation2=j;
     end
 end
-if RSSofeNBs(theServiceBaseStation1)>RSSofHeNBs(theServiceBaseStation2)+50%加多少？
+if RSSofeNBs(theServiceBaseStation1)>(RSSofHeNBs(theServiceBaseStation2)-100)%加多少？
     theServiceBaseStation=theServiceBaseStation1;
     class='eNBs';
 else

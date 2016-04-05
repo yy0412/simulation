@@ -1,8 +1,7 @@
-function Path=howtoMove(user,users,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats)%？？？？取得的[x_user,y_user]还有问题
+function Path=howtoMove(user,PositioninUsers,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats)%？？？？取得的[x_user,y_user]还有问题
 n=1;%dis_rand参数
-PositioninUsers=findPositioninPOIs(user,users);
 %worker
-if PositioninUsers>=1&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口-出口和入口一样
+if 1<=PositioninUsers&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口-出口和入口一样
     Enter=user;
     %-------------1.分配工作地址-----------------
     x_work=[restaurants;shops;offices];
@@ -23,7 +22,7 @@ if PositioninUsers>=1&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口
     Path_offwork=[Path_Midway_offwork,getShortestPath(findPositioninPOIs(destinationmidway_offwork,pois),findPositioninPOIs(Enter,pois),UG)];
     Path=[Path_onwork,Path_offwork];
     %resident
-elseif 19<=PositioninUsers&&PositioninUsers<=42
+elseif(PositioninUsers>=19)&&(PositioninUsers<=42)
     Home=user;
     %分配离开本区域去工作的gate
     x_work=gates;
@@ -50,7 +49,7 @@ elseif 19<=PositioninUsers&&PositioninUsers<=42
     %购物或用餐结束回家
     Path_goHome=getShortestPath(findPositioninPOIs(destination_downwork,pois),findPositioninPOIs(Home,pois),UG);
     Path=[Path_onwork,Path_offwork,Path_downwork,Path_goHome];
-elseif   43<=PositioninUsers&&PositioninUsers<=54%visitors
+elseif(PositioninUsers>=43)&&(PositioninUsers<=54)%visitors
     Enter=user;
     %选出口
     x=gates;
@@ -70,8 +69,8 @@ else%roamingresidents
     id = randperm(48,theNumberofPOI);
     roamingresidentsPOI = poisofRoamingResidents(id,:);
     thePOI=[user;roamingresidentsPOI];
-    for i=1:size(thePOI)
-        Path=[Path,getShortestPath(thePOI(i),thePOI(i+1))];
+    for i=1:size(thePOI)-1
+        Path=[Path,getShortestPath(findPositioninPOIs(thePOI(i,:),pois),findPositioninPOIs(thePOI(i+1,:),pois),UG)];
     end
 end
 end

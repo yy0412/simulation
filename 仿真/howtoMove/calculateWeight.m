@@ -1,4 +1,4 @@
-function UG=calculateWeight(user,pois)%
+function [UG,pois]=calculateWeight(user,pois)%
 %判断user是否在pois里，如果没有则加进去
 a=0;
 for k=1:size(pois,2)

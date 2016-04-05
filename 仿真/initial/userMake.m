@@ -17,14 +17,14 @@ end
 % end
 
 %Worker（30%）、Resident（40%）、Visitor（20%）、Roaming resident（10%）
-numberOfWorkers=numberOfUsers*0.3;%%worker\visitor最开始应该只是gates，但出入口要一样
-workers=users(1:numberOfUsers*0.3,:);%18(1-18)
-numberOfResidents=numberOfUsers*0.4;%从gates开始
-residents=users(numberOfUsers*0.3+1:numberOfUsers*0.7,:);%24(19-42)
-numberOfVisitors=numberOfUsers*0.2;
-visitors=users(numberOfUsers*0.7+1:numberOfUsers*0.9,:);%12(43-54)%出入口都是gates，但要可以不一样
-numberOfRoamingresidents=numberOfUsers*0.1;
-roamingresidents=users(numberOfUsers*0.9+1:numberOfUsers,:);%6(55-60)最开始的点也是最后结束的点
+% numberOfWorkers=numberOfUsers*0.3;%%worker\visitor最开始应该只是gates，但出入口要一样
+% workers=users(1:numberOfUsers*0.3,:);%18(1-18)
+% numberOfResidents=numberOfUsers*0.4;%从gates开始
+% residents=users(numberOfUsers*0.3+1:numberOfUsers*0.7,:);%24(19-42)
+% numberOfVisitors=numberOfUsers*0.2;
+% visitors=users(numberOfUsers*0.7+1:numberOfUsers*0.9,:);%12(43-54)%出入口都是gates，但要可以不一样
+% numberOfRoamingresidents=numberOfUsers*0.1;
+% roamingresidents=users(numberOfUsers*0.9+1:numberOfUsers,:);%6(55-60)最开始的点也是最后结束的点
 end
 
 

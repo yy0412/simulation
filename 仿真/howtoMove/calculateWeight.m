@@ -1,27 +1,54 @@
 function [UG,pois]=calculateWeight(user,pois)%
 %判断user是否在pois里，如果没有则加进去
 a=0;
-for k=1:size(pois,2)
-if (user-pois(k,:))==[0,0]
-    a=a+1;
-end
+for k=1:size(pois,1)
+    if user(1)-pois(k,1)==0&&user(2)-pois(k,2)==0
+        a=a+1;
+    end
 end
 if a==0
     pois=[pois;user];
 end
 %calculateWeight
 W=[];
-for i=1:size(pois)
-    for j=1:size(pois)
-    W(i,j)=abs(pois(i,1)-pois(j,1))+abs(pois(i,2)-pois(j,2));
-    end
-end
-%权值和边对应得到UG
 Vector1=[];
 Vector2=[];
 for i=1:size(pois)
-    Vector1=[Vector1,i*ones(1,size(pois,1))];
-    Vector2=[Vector2,1:size(pois,1)];
+    a=find(pois(:,1)==pois(i,1));
+    a=setdiff(a,i);
+    aMinusI=pois(a,2)-pois(i,2);
+    fa=[];
+    if size(find(aMinusI>0))~=0
+        f1=find(aMinusI==min(aMinusI(find(aMinusI>0))));%找到的这个数是它在pois里的位置
+        fa=[fa,a(f1)];
+    end
+    if size(find(aMinusI<0))~=0
+        f2=find(aMinusI==max(aMinusI(find(aMinusI<0))));
+        fa=[fa,a(f2)];
+    end
+    for j=1:size(fa)
+        W(i,fa(j))=abs(pois(i,2)-pois(j,2));
+        Vector1=[Vector1,i];
+        Vector2=[Vector2,fa(j)];
+    end
+    b=find(pois(:,2)==pois(i,2));
+    b=setdiff(b,i);
+    bMinusI=pois(b,1)-pois(i,1);
+    fb=[];
+    if size(find(bMinusI>0))~=0
+        f1=find(bMinusI==min(bMinusI(find(bMinusI>0))));%找到的这个数是它在pois里的位置
+        fb=[fb,b(f1)];
+    end
+    if size(find(bMinusI<0))~=0
+        f2=find(bMinusI==max(bMinusI(find(bMinusI<0))));
+        fb=[fb,b(f2)];
+    end
+    for j=1:size(fb)
+        W(i,fb(j))=abs(pois(i,1)-pois(j,1));
+        Vector1=[Vector1,i];
+        Vector2=[Vector2,fb(j)];
+    end
 end
+%权值和边对应得到UG
 UG = sparse(Vector1,Vector2,W);
 end

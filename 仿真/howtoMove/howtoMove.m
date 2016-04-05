@@ -64,11 +64,12 @@ elseif   43<=PositioninUsers&&PositioninUsers<=54%visitors
     Path_Midway_visit=getShortestPath(findPositioninPOIs(Enter,pois),findPositioninPOIs(placetoVisit,pois),UG);
     Path_visit=[Path_Midway_visit,getShortestPath(findPositioninPOIs(placetoVisit,pois),findPositioninPOIs(gatetoLeave,pois),UG)];
     Path=[Path_Midway_visit,Path_visit];
-else 55<=PositioninUsers&&PositioninUsers<=60%roamingresidents
+else%roamingresidents
     Path=[];
     theNumberofPOI=randperm(48,1);
-    roamingresidentsPOI=[poisofRoamingResidents,theNumberofPOI];
-    thePOI=[user;roamingresidentsPOI]
+    id = randperm(48,theNumberofPOI);
+    roamingresidentsPOI = poisofRoamingResidents(id,:);
+    thePOI=[user;roamingresidentsPOI];
     for i=1:size(thePOI)
         Path=[Path,getShortestPath(thePOI(i),thePOI(i+1))];
     end

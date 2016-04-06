@@ -22,13 +22,13 @@ eNBs=[100,340,5,1;240,50,5,1;375,340,5,1;550,190,5,1];
 %设置HeNB
 x=[31,247,413,504,201,367,458,549];%[16,232,398,489]+5;并上[216,382,473,564,]-5;
 y=[31,197,288,151,183,333];%[16,182,273]+[5,5,5]并上[166,198,348]-[5,5,5]
-
+randomNumber=rand(1,numberofHeNB);
 HeNBs=[];
 for i=1:numberofHeNB/2%每次产生两个
     num1=randperm(8,1);
-    HeNBs=[HeNBs;x(num1),16+327*rand(),randperm(4,1),1];%第三列表示位置场景---1flat;2office;3shop;4restaurant
+    HeNBs=[HeNBs;x(num1),16+327*randomNumber(i),randperm(4,1),1];%第三列表示位置场景---1flat;2office;3shop;4restaurant
     num2=randperm(6,1);
-    HeNBs=[HeNBs;16+543*rand(),y(num2),randperm(4,1),1];
+    HeNBs=[HeNBs;16+543*randomNumber(1+numberofHeNB/2),y(num2),randperm(4,1),1];
 end
 %分配楼层,除了flat其他的楼层都为1
 for numHeNB=1:size(HeNBs)

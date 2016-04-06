@@ -1,4 +1,4 @@
-function users=userMake(numberOfUsers)
+function users=userMake(numberOfUsers,flats)
 %间距还需调整
 xStreet=[0,16,216,232,382,398,473,489,564,580];
 yStreet=[0,16,166,182,198,273,348,364];
@@ -22,21 +22,13 @@ numberOfResidents=numberOfUsers*0.4;%residents=users(numberOfUsers*0.3+1:numberO
 numberOfRoamingresidents=numberOfUsers*0.1;%roamingresidents=users(numberOfUsers*0.9+1:numberOfUsers,:);%6(55-60)
 Residents=[;];
 Roamingresidents=[;];
-for i=1:numberOfResidents/2
-%选取纵向街道
-numofVerticalStreet=randperm(10,1);%从1-5中，随机选一个数
-Residents=[Residents;xStreet(numofVerticalStreet),round(364*rand())];%round保证用户的坐标也都是整数
-%选取横向街道
-numofHorizontalStreet=randperm(8,1);
-Residents=[Residents;round(580*rand()),yStreet(numofHorizontalStreet)];
+for i=1:numberOfResidents
+    id=randperm(10,1);
+    Residents=[Residents;flats(id,:)];
 end
-for i=1:numberOfRoamingresidents/2
-%选取纵向街道
-numofVerticalStreet=randperm(10,1);%从1-5中，随机选一个数
-Roamingresidents=[Roamingresidents;xStreet(numofVerticalStreet),round(364*rand())];%round保证用户的坐标也都是整数
-%选取横向街道
-numofHorizontalStreet=randperm(8,1);
-Roamingresidents=[Roamingresidents;round(580*rand()),yStreet(numofHorizontalStreet)];
+for i=1:numberOfRoamingresidents
+    id=randperm(10,1);
+    Roamingresidents=[Roamingresidents;flats(id,:)];
 end
 users(1:18,:)=Workers;
 users(19:42,:)=Residents;

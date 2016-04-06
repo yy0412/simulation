@@ -7,17 +7,17 @@ clc
 record_time=0;                %record the number of interval time of system
 %countinue_run=true;
 [pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats]=PIOArrange();
+[UG,W]=calculateWeight(pois);
 %部署微微基站和家庭基站
 numberofHeNB=30;
-count_handover_number=zeros(numberofHeNB);
 %numberofHeNB=30:30:120;%numberofeNB=4;
 [eNBs,HeNBs]=baseStationArrange(numberofHeNB);
 %BaseStations=[eNBs;HeNBs];
+count_handover_number=zeros(numberofHeNB);
 %用户撒点
 numberOfUsers=60;%应该是60个
-users=userMake(numberOfUsers);
+users=userMake(numberOfUsers,flats);
 for u=1:numberOfUsers
-    [UG,pois]=calculateWeight(users(u,:),pois);
     %选择服务基站
     [theServiceBaseStation,class]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
     Path=howtoMove(users(u,:),u,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats);

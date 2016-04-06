@@ -1,21 +1,11 @@
-function [UG,pois]=calculateWeight(user,pois)%
-%判断user是否在pois里，如果没有则加进去
-a=0;
-for k=1:size(pois,1)
-    if user(1)-pois(k,1)==0&&user(2)-pois(k,2)==0
-        a=a+1;
-    end
-end
-if a==0
-    pois=[pois;user];
-end
+function [UG,W]=calculateWeight(pois)
 %calculateWeight
 W=[];
 Vector1=[];
 Vector2=[];
 for i=1:size(pois)
     a=find(pois(:,1)==pois(i,1));
-    a=setdiff(a,i);
+    %a=setdiff(a,i);
     aMinusI=pois(a,2)-pois(i,2);
     fa=[];
     if size(find(aMinusI>0))~=0
@@ -35,7 +25,7 @@ for i=1:size(pois)
     end
     
     b=find(pois(:,2)==pois(i,2));
-    b=setdiff(b,i);
+    %b=setdiff(b,i);
     bMinusI=pois(b,1)-pois(i,1);
     fb=[];
     if size(find(bMinusI>0))~=0

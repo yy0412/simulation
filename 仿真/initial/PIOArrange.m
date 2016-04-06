@@ -18,19 +18,17 @@ othergates=[0,176;0,265;580,176;580,265;224,0;224,364;390,0;390,364;481,0;481,36
 restaurants=[216,207;100,16];%两个
 shops=[524,273;398,30];%两个
 offices=[473,140;232,300];%两个
-
-flats=[;];
-for i=1:5%10个，循环5次，每次产生两个
-num1=randperm(10,1);
-flats=[flats;x(num1),round(364*rand())];
-num2=randperm(8,1);
-flats=[flats;round(580*rand()),y(num2)];
-end
-
+flats=[16,197;232,330;398,46;382,132;489,230;580,36;162,166;317,198;555,348;91,102];
+% for i=1:5%10个，循环5次，每次产生两个
+% num1=randperm(10,1);
+% flats=[flats;x(num1),round(364*rand())];
+% num2=randperm(8,1);
+% flats=[flats;round(580*rand()),y(num2)];
+% end
 pois=[pois;othergates;flats;offices;shops;restaurants;];
 gates=[othergates;0,0;0,364;580,0;580,360];%14个
-% for j=1:size(pois)
-%     plot(pois(j,1),pois(j,2),'.');
-%     hold on;
-% end
+for j=1:size(flats)
+    plot(flats(j,1),flats(j,2),'.');
+    hold on;
+end
 end

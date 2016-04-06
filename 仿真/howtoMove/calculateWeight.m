@@ -1,4 +1,4 @@
-function UG=calculateWeight(pois)
+function [UG,W]=calculateWeight(pois)
 %calculateWeight
 W=[];
 Vector1=[];

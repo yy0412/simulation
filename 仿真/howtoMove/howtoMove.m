@@ -1,4 +1,4 @@
-function Path=howtoMove(user,PositioninUsers,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats)%？？？？取得的[x_user,y_user]还有问题
+function Path=howtoMove(user,PositioninUsers,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats)
 n=1;%dis_rand参数
 %worker
 if 1<=PositioninUsers&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口-出口和入口一样
@@ -13,6 +13,7 @@ if 1<=PositioninUsers&&PositioninUsers<=18%worker-起始位置就在出入口，不用选入口
     p_onwork=[0.9,0.05,0.05];
     destinationmidway_onwork=dis_rand(x_onwork,p_onwork,n);
     Path_Midway_onwork=getShortestPath(findPositioninPOIs(Enter,pois),findPositioninPOIs(destinationmidway_onwork,pois),UG);
+    a=findPositioninPOIs(workplace,pois);
     Path_onwork=[Path_Midway_onwork,getShortestPath(findPositioninPOIs(destinationmidway_onwork,pois),findPositioninPOIs(workplace,pois),UG)];
     %下班
     x_offwork=[Enter;shops;restaurants];

@@ -26,11 +26,14 @@ for i=1:size(pois)
         f2=find(aMinusI==max(aMinusI(find(aMinusI<0))));
         fa=[fa,a(f2)];
     end
-    for j=1:size(fa)
-        W(i,fa(j))=abs(pois(i,2)-pois(j,2));
-        Vector1=[Vector1,i];
-        Vector2=[Vector2,fa(j)];
+    if size(fa)~=0
+        for j=1:size(fa)
+            W=[W,abs(pois(i,2)-pois(fa(j),2))];
+            Vector1=[Vector1,i];
+            Vector2=[Vector2,fa(j)];
+        end
     end
+    
     b=find(pois(:,2)==pois(i,2));
     b=setdiff(b,i);
     bMinusI=pois(b,1)-pois(i,1);
@@ -43,10 +46,12 @@ for i=1:size(pois)
         f2=find(bMinusI==max(bMinusI(find(bMinusI<0))));
         fb=[fb,b(f2)];
     end
-    for j=1:size(fb)
-        W(i,fb(j))=abs(pois(i,1)-pois(j,1));
-        Vector1=[Vector1,i];
-        Vector2=[Vector2,fb(j)];
+    if size(fb)~=0
+        for j=1:size(fb)
+            W=[W,abs(pois(i,1)-pois(fb(j),1))];
+            Vector1=[Vector1,i];
+            Vector2=[Vector2,fb(j)];
+        end
     end
 end
 %权值和边对应得到UG

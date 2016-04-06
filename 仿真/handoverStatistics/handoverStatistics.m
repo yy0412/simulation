@@ -6,12 +6,12 @@ clc
 %Tc=1;                      %time of measure interval 0.5
 record_time=0;                %record the number of interval time of system
 %countinue_run=true;
+[pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats]=PIOArrange();
 %部署微微基站和家庭基站
 numberofHeNB=30;
 count_handover_number=zeros(numberofHeNB);
 %numberofHeNB=30:30:120;%numberofeNB=4;
 [eNBs,HeNBs]=baseStationArrange(numberofHeNB);
-[pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats]=PIOArrange();
 %BaseStations=[eNBs;HeNBs];
 %用户撒点
 numberOfUsers=60;%应该是60个
@@ -22,7 +22,7 @@ for u=1:numberOfUsers
     [theServiceBaseStation,class]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
     Path=howtoMove(users(u,:),u,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats);
     while record_time<10
-        PathSize=size(Path);
+        PathSize=size(Path,2);
         %曼哈顿移动模型
         while PathSize>0
             des=Path(1);

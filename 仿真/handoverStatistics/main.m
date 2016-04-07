@@ -26,6 +26,7 @@ for u=39:numberOfUsers
                 [theServiceBaseStationNew,classNew]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
                 if theServiceBaseStationNew==theServiceBaseStation%&&strcmp(class,'HeNBs')&&strcmp(classNew,'HeNBs')%·¢ÉúÇÐ»»
                     count_handover_number(theServiceBaseStation,theServiceBaseStationNew)=count_handover_number(theServiceBaseStation,theServiceBaseStationNew)+1;
+                    count_handover_number(theServiceBaseStationNew,theServiceBaseStation)=count_handover_number(theServiceBaseStationNew,theServiceBaseStation)+1;
                     theServiceBaseStation=theServiceBaseStationNew;
                     class=classNew;
                 end

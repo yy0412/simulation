@@ -11,11 +11,11 @@ for i=1:size(RSSofeNBs)
     end
 end
 for j=1:size(RSSofHeNBs)
-    if RSSofHeNBs(i)-4>theServiceBaseStation2%Hysteresis for handover [dB]
+    if RSSofHeNBs(j)-4>theServiceBaseStation2%Hysteresis for handover [dB]
         theServiceBaseStation2=j;
     end
 end
-if RSSofeNBs(theServiceBaseStation1)>(RSSofHeNBs(theServiceBaseStation2)-100)%加多少？
+if RSSofHeNBs(theServiceBaseStation2)<-90%加多少？
     theServiceBaseStation=theServiceBaseStation1;
     class='eNBs';
 else

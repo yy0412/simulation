@@ -27,8 +27,8 @@ flats=[16,197;232,330;398,46;382,132;489,230;580,36;162,166;317,198;555,348;91,1
 % end
 pois=[pois;othergates;flats;offices;shops;restaurants;];
 gates=[othergates;0,0;0,364;580,0;580,364];%14¸ö
-for j=1:size(flats)
-    plot(flats(j,1),flats(j,2),'.');
-    hold on;
-end
+% for j=1:size(flats)
+%     plot(flats(j,1),flats(j,2),'.');
+%     hold on;
+% end
 end

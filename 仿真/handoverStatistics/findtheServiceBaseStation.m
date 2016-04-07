@@ -16,7 +16,7 @@ for j=1:size(RSSofHeNBs)
     end
 end
 if RSSofHeNBs(theServiceBaseStation2)<-90
-    theServiceBaseStation=theServiceBaseStation1;
+    theServiceBaseStation=max(theServiceBaseStation1,theServiceBaseStation2);
     class='eNBs';
 else
     theServiceBaseStation=theServiceBaseStation2;

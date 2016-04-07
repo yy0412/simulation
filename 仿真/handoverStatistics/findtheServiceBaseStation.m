@@ -6,12 +6,12 @@ RSSofHeNBs=calculate_RSS(user,HeNBs);
 theServiceBaseStation1=1;
 theServiceBaseStation2=1;
 for i=1:size(RSSofeNBs)
-    if RSSofeNBs(i)>theServiceBaseStation1
+    if RSSofeNBs(i)-4>theServiceBaseStation1%Hysteresis for handover [dB]
         theServiceBaseStation1=i;
     end
 end
 for j=1:size(RSSofHeNBs)
-    if RSSofHeNBs(i)>theServiceBaseStation2
+    if RSSofHeNBs(i)-4>theServiceBaseStation2%Hysteresis for handover [dB]
         theServiceBaseStation2=j;
     end
 end

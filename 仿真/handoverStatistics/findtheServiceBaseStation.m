@@ -15,7 +15,7 @@ for j=1:size(RSSofHeNBs)
         theServiceBaseStation2=j;
     end
 end
-if RSSofHeNBs(theServiceBaseStation2)<-90%¼Ó¶àÉÙ£¿
+if RSSofHeNBs(theServiceBaseStation2)<-90
     theServiceBaseStation=theServiceBaseStation1;
     class='eNBs';
 else

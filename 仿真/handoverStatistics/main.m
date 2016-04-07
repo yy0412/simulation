@@ -10,7 +10,7 @@ numberOfUsers=60;%应该是60个
 users=userMake(numberOfUsers,flats);
 %初始化切换统计矩阵
 count_handover_number=zeros(numberofHeNB);
-for u=39:numberOfUsers
+for u=1:numberOfUsers
     %选择服务基站
     [theServiceBaseStation,class]=findtheServiceBaseStation(users(u,:),eNBs,HeNBs);
     Path=howtoMove(users(u,:),u,UG,pois,poisofRoamingResidents,gates,restaurants,shops,offices,flats);

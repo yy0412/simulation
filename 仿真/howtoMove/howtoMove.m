@@ -58,7 +58,7 @@ elseif(PositioninUsers>=43)&&(PositioninUsers<=54)%visitors
     gatetoLeave=dis_rand(x,p,n);
     %-------------1.选择去哪儿游玩-----------------
     x_work=[restaurants;shops;offices;flats;gatetoLeave];
-    p_work=[0.125;0.125;0.125;0.125;0.025;0.025;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.02;0.5];
+    p_work=[0.125,0.125,0.125,0.125,0.025,0.025,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.25];
     placetoVisit=dis_rand(x_work,p_work,n);
     %-----------2.计算最短路程--------------
     Path_Midway_visit=getShortestPath(findPositioninPOIs(Enter,pois),findPositioninPOIs(placetoVisit,pois),UG);

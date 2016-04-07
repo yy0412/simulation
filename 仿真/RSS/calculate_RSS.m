@@ -16,7 +16,7 @@ for b=1:size(baseStations)
             scenario='HeNB';
             location='flat';
             PL = getPathLoss(distance,scenario,location,numberOfFloors);%calculate PL
-            RSS(b)=HeNB_Tx_Power-PL-attenuationofWalls-shadowingofHeNB;%直接减那几个数对吗？
+            RSS(b)=HeNB_Tx_Power-PL-attenuationofWalls-shadowingofHeNB;%直接减那几个数对吗？还加不加天线增益
         case 2
             scenario='HeNB';
             location='office';

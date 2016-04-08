@@ -39,11 +39,11 @@ for numHeNB=1:size(HeNBs)
 end
 %plot
 for numeNB=1:size(eNBs)%»­Î¢Î¢»ùÕ¾
-    plot(eNBs(numeNB,1),eNBs(numeNB,2),'o');
+    plot(eNBs(numeNB,1),eNBs(numeNB,2),'Marker','o','Color','g');
     hold on;
 end
 for numHeNB=1:size(HeNBs)%»­¼ÒÍ¥»ùÕ¾
-    plot(HeNBs(numHeNB,1),HeNBs(numHeNB,2),'X');
+    plot(HeNBs(numHeNB,1),HeNBs(numHeNB,2),'Marker','X','Color','g');
     hold on;
 end
 end
